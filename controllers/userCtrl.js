@@ -25,7 +25,7 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
 
     res.json({
       token: generatetoken(id),
-      ...user._doc,
+      ..._.omit(user._doc, ["password"]),
     });
   } else {
     throw new Error("Invalid Creds");
